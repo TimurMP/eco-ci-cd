@@ -63,22 +63,33 @@
 #   ansible_password: "pa$$word"                # SSH password for Ansible user (if not using key)
 #
 # bastion:
-#   ansible_host: 10.46.29.101                  # IP address or hostname of the bastion VM
-#   hostname: ns2.telcov10n.lab.eng.tlv2.redhat.com  # FQDN of the bastion (used as DNS server FQDN)
+#   ansible_host: 10.10.10.10"                  # IP address or hostname of the bastion VM
+#   hostname: ns2.example.com  # FQDN of the bastion (used as DNS server FQDN)
 #   dns_server_name: ns2                        # Hostname for the DNS nameserver (used in zone records)
-#   dns: 10.47.242.10                           # DNS forwarder IP (used in named.conf forwarders section)
-#   gateway: 10.46.29.126                       # Default gateway for the bastion
-#   net_prefix: "27"                            # Network prefix (CIDR notation)
+#   dns: 10.10.10.20                           # DNS forwarder IP (used in named.conf forwarders section)
+#   gateway: 10.10.10.254                       # Default gateway for the bastion
+#   net_prefix: "24"                            # Network prefix (CIDR notation)
 #   vm_bridge_name: br-hlxcl94                  # Hypervisor bridge name (used by deploy-vm-bastion-libvirt.yml)
-#   vm_name: ns2-infra-tlv-2                    # VM name on the hypervisor (used by deploy-vm-bastion-libvirt.yml)
+#   vm_name: ns2-server                    # VM name on the hypervisor (used by deploy-vm-bastion-libvirt.yml)
 #
 # Playbook Variables (defined in vars section):
 #   bind_root: "{{ ansible_user_dir }}/bind"    # Root directory for BIND configuration and data
-#   dns_domain: telcov10n                       # DNS domain name (without base domain)
-#   dns_base_domain: lab.eng.tlv2.redhat.com    # Base domain for the zone
+#   dns_domain: exampple                       # DNS domain name (without base domain)
+#   dns_base_domain: example.com    # Base domain for the zone
 #   dns_ttl: 60                                 # Default TTL for DNS records (in seconds)
 #   dns_records: []                             # Optional list of additional DNS A records
 #                                               # Format: [{ name: 'host1', ip: '10.0.0.1' }, ...]
+# JSON Data
+# {
+#   "ansible_host": "10.10.10.10",
+#   "dns": "10.10.10.20",
+#   "dns_server_name": "ns2",
+#   "gateway": "10.10.10.254",
+#   "hostname": "ns2.example.comcom",
+#   "net_prefix": "24",
+#   "vm_bridge_name": "br-hlxcl94",
+#   "vm_name": "ns2-server "
+# }
 # Notes:
 # - This playbook assumes the hypervisor host is pre-installed and ready.
 # - Customize variables such as `vm_name`, `ansible_user`, and network settings to fit your environment.
