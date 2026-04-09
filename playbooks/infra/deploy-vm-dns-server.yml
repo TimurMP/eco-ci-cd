@@ -99,8 +99,8 @@
 # - Test in a non-production environment before deploying.
 
 ---
-# - name: Deploy DNS VM
-#   ansible.builtin.import_playbook: deploy-vm-bastion-libvirt.yml
+- name: Deploy DNS VM
+  ansible.builtin.import_playbook: deploy-vm-bastion-libvirt.yml
 
 - name: Configure DNS server on bastion
   hosts: bastion
