@@ -18,14 +18,16 @@
       listen-on { any; };
       listen-on-v6 { any; };                                                                                                                                                 
    
-      forwarders {                                                                                                                                                           
-          {{ dns_forwarder | default('10.47.242.10') }};
+      forwarders {
+{% for forwarder in dns_forwarders %}
+          {{ forwarder }};
+{% endfor %}
       };                                                                                                                                                                     
    
       forward first;                                                                                                                                                         
   };                                                    
 
-  zone "{{ dns_zone | default('telcov10n.lab.eng.tlv2.redhat.com') }}" {                                                                                                     
+  zone "{{ dns_domain }}{{ dns_base_domain }}" {                                                                                                     
       type master;
-      file "/etc/bind/zones/db.{{ dns_zone | default('telcov10n') }}";                                                                                                       
+      file "/etc/bind/zones/db.{{ dns_domain }}";                                                                                                       
   }; 

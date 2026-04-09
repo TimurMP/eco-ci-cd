@@ -77,6 +77,9 @@
 #   dns_domain: exampple                       # DNS domain name (without base domain)
 #   dns_base_domain: example.com    # Base domain for the zone
 #   dns_ttl: 60                                 # Default TTL for DNS records (in seconds)
+#   dns_forwarders: []                          # List of DNS forwarder IPs (used in named.conf)
+#                                               # Format: ['10.47.242.10', '8.8.8.8']
+#                                               # Default: uses bastion's dns variable
 #   dns_records: []                             # Optional list of additional DNS A records
 #                                               # Format: [{ name: 'host1', ip: '10.0.0.1' }, ...]
 # JSON Data
@@ -110,6 +113,9 @@
     dns_server_fqdn: "{{ hostvars['bastion'].hostname }}"
     dns_server_hostname: "{{ hostvars['bastion'].dns_server_name }}"
     dns_ttl: 60
+    dns_forwarders:
+      - "{{ hostvars['bastion']['dns'] }}"
+      - "{{ hostvars['bastion']['dns2'] }}"
     bind:
       config: "{{ bind_root }}/config"
       zones: "{{ bind_root }}/zones"
