@@ -29,5 +29,5 @@
 
   zone "{{ dns_domain }}{{ dns_base_domain }}" {                                                                                                     
       type master;
-      file "{{ ansible_user_dir }}/bind/zones/db.{{ dns_domain }}";                                                                                                       
+      file "/etc/bind/zones/db.{{ dns_domain }}";                                                                                                       
   }; 
